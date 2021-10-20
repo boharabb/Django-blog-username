@@ -25,6 +25,19 @@ def viewprofile(request, user_id):
     context = {"profileview": profileview}
     return render(request, "viewprofile.html", context)
 
+
+class ShowprofilePage(DetailView):
+    model = profile
+    template_name = "viewprofile.html"
+
+    def get_context_data(self, *args, **kwargs):
+        # users = profile.objects.all()
+        context = super(ShowprofilePage, self).get_context_data(
+            *args, **kwargs)
+        bloguser = get_object_or_404(profile, id=self.kwargs['pk'])
+        context["bloguser"] = bloguser
+        return context
+
 def usersprofile(request):
     allprofile = profile.objects.filter(user=request.user)
     context = {"allprofile": allprofile}
