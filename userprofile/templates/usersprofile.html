@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card m-4 p-4">
+    <h3 class="text-center">Users</h3>
+
+    {% if allprofile %}
+    {% for obj in allprofile %} 
+
+    <!-- {{user}} -->
+{% if obj.profileimage %}
+
+    <img height="200" width="250" src="{{ obj.profileimage.url }}" alt="">
+    {% endif %}
+    Username= {{obj.user.username}} <br>
+    Name= {{obj.user.first_name}} {{obj.user.last_name}} <br>
+    Email= {{obj.user.email}} <br>
+    About = {{obj.bio}}<br>
+    Address= {{obj.address}}<br>
+    phone= {{obj.phone}}<br>
+<hr><br>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

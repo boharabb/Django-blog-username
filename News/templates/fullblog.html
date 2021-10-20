@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center"> Latest News </h2>
+<a href="{% url 'news:addblog'  %}">Add New BLogs</a>
+
+{% if fullblog %}
+{% for news in fullblog %}
+
+<h4 class="text-danger">{{news.blogtitle}} </h4>|
+{{news.blogcreated}} |
+<a href="">{{news.blogcreator}}</a> <br><br>
+
+{% if news.blogimage %}
+<img height="180" width="250" src="{{news.blogimage.url}}" alt="">
+{% endif %}
+<br>
+{{news.blogdetail|safe}}
+<hr>
+<a href="{% url 'news:editnewsblog' news.id %}">Edit News</a>
+<hr>
+
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

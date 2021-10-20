@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if book_list %}
+<h2> list of book_list </h2>
+<h4 class="text-end"> <a href="{% url 'home:addbook' %}">New Book</a> </h4>
+
+
+{% for obj in book_list %}
+<div class="card m-3 p-4 ">
+{% if obj.book_image %}
+   <img height="250" width="250" src="{{ obj.book_image.url}}" alt=""> 
+{% endif %}
+<strong class="text-success" >Name = {{ obj.name}} </strong>
+<strong class="text-primary">isbn = {{ obj.isbn}}</strong>
+<strong class="text-danger">price = {{ obj.price}} </strong>
+<strong class="text-danger">Details = {{ obj.bookdetail|safe}} </strong>
+<strong class="text-danger"><a href="{% url 'home:editbook' obj.id %}">Edit</a> </strong>
+<strong class="text-danger"><a href="{% url 'home:deletebook' obj.id %}">Delete</a> </strong>
+
+</div>
+<br>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

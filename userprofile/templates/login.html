@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto my-5" style="justify-content: center; display: flex; align-items: center;">
+    <div class="sub-container  p-5" style=" height:auto ; width: 500px; border: 2px solid black; ">
+<form action="" method="POST">
+    {% csrf_token %}
+    <h3>Log in Form</h3>
+    {% load widget_tweaks %}
+    {% for field in form.visible_fields %}
+    <div class="from-group">
+        <label for="{{ field.id_for_label }}">{{field.label}}</label>
+        {{field|add_class:'form-control'}} <br>
+        {% for error in field.errors %}
+        <p class="text-danger">{{error}}</p>
+
+        {% endfor %}
+    </div>
+    {% endfor %} <br>
+    <button style="width: 100%; type="submit" class="btn btn-primary">Submit</button>
+</form><br>
+<p class="text-center">OR</p> 
+<button style="width: 100%;" type="submit" class="btn btn-primary"><a href="{% url 'userprofile:usersignup' %}"></a>Sign Up</button>
+
+    </div>
+</div>
+
+
+{% endblock %}
